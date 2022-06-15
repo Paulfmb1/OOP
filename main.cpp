@@ -1,0 +1,38 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+
+using namespace std;
+
+int main()
+{
+    ifstream in;
+    in.open("Text.txt");
+
+    int k = 0;
+    vector<int> array(10001);
+
+    if (in.is_open())
+    {
+        while (!in.eof())
+        {
+            in >> k;
+            array[k]++;
+        }
+    }
+    in.close();
+
+    vector<int> main_array(10001);
+
+    for (int i = 0, j = 0; i < 10001; i++)
+    {
+        if (array[i] > 1)
+        {
+            main_array.push_back(i);
+            cout << i << "\n";
+        }
+
+    }
+
+    return 0;
+}
