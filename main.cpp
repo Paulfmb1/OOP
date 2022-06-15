@@ -1,0 +1,21 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main()
+{
+	ofstream out;
+	out.open("Text.txt");
+
+	if (out.is_open())
+	{
+		for (int i = 0; i < 20000000; i++)
+		{
+			out << rand() % 10000 + 1 << endl;
+		}
+	}
+
+	cout << "End" << endl;
+	return 0;
+}
