@@ -1,0 +1,258 @@
+#include <iostream>
+#include "Lab41.h"
+#include "Vector.h"
+
+using namespace std;
+
+class VectorTask : Vector<Object*>
+{
+
+public:
+
+	VectorTask() = default;
+
+	VectorTask(VectorTask&& other) : Vector<Object*>(std::move(other))
+	{
+	}
+	
+	friend std::ostream& operator<<(ostream& str, const VectorTask& victor)
+	{
+		for (size_t i = 0; i < victor.getSize(); i++)
+		{
+			str << *victor[i] << endl << endl;
+		}
+
+		return str;
+	}
+
+};
+
+void Menu(VectorTask& vec)
+{
+	while (true)
+	{
+		cout << "Enter the number:" << endl;
+		cout << "1. Human\n"
+			<< "2. Cyclist\n"
+			<< "3. Car\n"
+			<< "4. Bag\n"
+			<< "5. Print\n"
+			<< "6. Exit\n"
+			<< "P.S.: (1 - yes, 2 - no, 3 - not defined)\n";
+
+		size_t choose = 0;
+		cin >> choose;
+
+		switch (choose)
+		{
+		case 1:
+		{
+			unsigned short isMan;
+			unsigned short isChildren;
+			unsigned short isHaveGlasses;
+			unsigned short isHaveBeard;
+
+			cout << "Is man?:\t";
+			cin >> isMan;
+			cout << endl;
+
+			cout << "Is children?:\t";
+			cin >> isChildren;
+			cout << endl;
+
+			cout << "Is have glasses?:\t";
+			cin >> isHaveGlasses;
+			cout << endl;
+
+			cout << "is have beard?:\t";
+			cin >> isHaveBeard;
+			cout << endl;
+
+			double Xmin;
+			double Xmax;
+			double Ymin;
+			double Ymax;
+
+			cout << "Enter Xmin:\t";
+			cin >> Xmin;
+			cout << endl;
+
+			cout << "Enter Xmax:\t";
+			cin >> Xmax;
+			cout << endl;
+
+			cout << "Enter Ymin:\t";
+			cin >> Ymin;
+			cout << endl;
+
+			cout << "Enter Ymax:\t";
+			cin >> Ymax;
+			cout << endl;
+			Position pos(Xmin, Xmax, Ymin, Ymax);
+
+			vec.push_back(new Human(isMan, isChildren, isHaveGlasses, isHaveBeard, pos));
+
+			break;
+
+		}
+
+		case 2:
+		{
+
+			const size_t SIZE = 255;
+			char* bike_color = new char[SIZE];
+			cin.get();
+			cout << "Enter the bike color:\t";
+			cin.getline(bike_color, SIZE);
+
+			unsigned short isMan;
+			unsigned short isChildren;
+			unsigned short isHaveGlasses;
+			unsigned short isHaveBeard;
+
+			cout << "Is man?:\t";
+			cin >> isMan;
+			cout << endl;
+
+			cout << "Is children?:\t";
+			cin >> isChildren;
+			cout << endl;
+
+			cout << "Is have glasses?:\t";
+			cin >> isHaveGlasses;
+			cout << endl;
+
+			cout << "is have beard?:\t";
+			cin >> isHaveBeard;
+			cout << endl;
+
+			double Xmin;
+			double Xmax;
+			double Ymin;
+			double Ymax;
+
+			cout << "Enter Xmin:\t";
+			cin >> Xmin;
+			cout << endl;
+
+			cout << "Enter Xmax:\t";
+			cin >> Xmax;
+			cout << endl;
+
+			cout << "Enter Ymin:\t";
+			cin >> Ymin;
+			cout << endl;
+
+			cout << "Enter Ymax:\t";
+			cin >> Ymax;
+			cout << endl;
+			Position pos(Xmin, Xmax, Ymin, Ymax);
+
+			vec.push_back(new Cyclist(isMan, isChildren, isHaveGlasses, isHaveBeard, pos, bike_color));
+
+			break;
+		}
+
+		case 3:
+		{
+			const size_t SIZE = 255;
+			char* color = new char[SIZE];
+			cin.get();
+			cout << "Enter the color of the car:\t";
+			cin.getline(color, SIZE);
+
+
+			char* number = new char[SIZE];
+			cin.get();
+			cout << "Enter the number of car:\t";
+			cin.getline(number, SIZE);
+
+			bool isTaxi;
+			cout << "Is taxi?(0 - no, 1 - yes):\t";
+			cin >> isTaxi;
+
+			double Xmin;
+			double Xmax;
+			double Ymin;
+			double Ymax;
+
+			cout << "Enter Xmin:\t";
+			cin >> Xmin;
+			cout << endl;
+
+			cout << "Enter Xmax:\t";
+			cin >> Xmax;
+			cout << endl;
+
+			cout << "Enter Ymin:\t";
+			cin >> Ymin;
+			cout << endl;
+
+			cout << "Enter Ymax:\t";
+			cin >> Ymax;
+			cout << endl;
+			Position pos(Xmin, Xmax, Ymin, Ymax);
+
+			vec.push_back(new Car(number, isTaxi, color, pos));
+			break;
+		}
+
+		case 4:
+		{
+			const size_t SIZE = 255;
+			char* time = new char[SIZE];
+			cin.get();
+			cout << "The time when it was first seen?:\t";
+			cin.getline(time, SIZE);
+
+			double Xmin;
+			double Xmax;
+			double Ymin;
+			double Ymax;
+
+			cout << "Enter Xmin:\t";
+			cin >> Xmin;
+			cout << endl;
+
+			cout << "Enter Xmax:\t";
+			cin >> Xmax;
+			cout << endl;
+
+			cout << "Enter Ymin:\t";
+			cin >> Ymin;
+			cout << endl;
+
+			cout << "Enter Ymax:\t";
+			cin >> Ymax;
+			cout << endl;
+			Position pos(Xmin, Xmax, Ymin, Ymax);
+
+			vec.push_back(new Bag(time, pos));
+
+			break;
+		}
+
+		case 5:
+		{
+			cout << vec << endl;
+			break;
+		}
+
+		default:
+			break;
+		}
+	}
+}
+
+
+
+
+int main()
+{
+	VectorTask vec;
+
+
+	Menu(vec);
+
+	return 0;
+}
