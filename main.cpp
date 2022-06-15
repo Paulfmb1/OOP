@@ -1,0 +1,249 @@
+#include <iostream>
+#include "List.h"
+
+using namespace std;
+
+class ListTask : public List
+{
+public:
+	ListTask() = default;
+};
+
+void Menu(ListTask& lst)
+{
+	while (true)
+	{
+		cout << "Enter the number:" << endl;
+		cout << "1. Human\n"
+			<< "2. Cyclist\n"
+			<< "3. Car\n"
+			<< "4. Bag\n"
+			<< "5. Print\n"
+			<< "6. Exit\n"
+			<< "P.S.: (1 - yes, 2 - no, 3 - not defined)\n";
+
+		size_t choose = 0;
+		cin >> choose;
+
+		switch (choose)
+		{
+		case 1:
+		{
+			unsigned short isMan;
+			unsigned short isChildren;
+			unsigned short isHaveGlasses;
+			unsigned short isHaveBeard;
+
+			cout << "Is man?:\t";
+			cin >> isMan;
+			cout << endl;
+
+			cout << "Is children?:\t";
+			cin >> isChildren;
+			cout << endl;
+
+			cout << "Is have glasses?:\t";
+			cin >> isHaveGlasses;
+			cout << endl;
+
+			cout << "is have beard?:\t";
+			cin >> isHaveBeard;
+			cout << endl;
+
+			double Xmin;
+			double Xmax;
+			double Ymin;
+			double Ymax;
+
+			cout << "Enter Xmin:\t";
+			cin >> Xmin;
+			cout << endl;
+
+			cout << "Enter Xmax:\t";
+			cin >> Xmax;
+			cout << endl;
+
+			cout << "Enter Ymin:\t";
+			cin >> Ymin;
+			cout << endl;
+
+			cout << "Enter Ymax:\t";
+			cin >> Ymax;
+			cout << endl;
+			Position pos(Xmin, Xmax, Ymin, Ymax);
+
+			lst.Add(new Human(isMan, isChildren, isHaveGlasses, isHaveBeard, pos));
+
+			break;
+
+		}
+
+		case 2:
+		{
+
+			const size_t SIZE = 255;
+			char* bike_color = new char[SIZE];
+			cin.get();
+			cout << "Enter the bike color:\t";
+			cin.getline(bike_color, SIZE);
+
+			unsigned short isMan;
+			unsigned short isChildren;
+			unsigned short isHaveGlasses;
+			unsigned short isHaveBeard;
+
+			cout << "Is man?:\t";
+			cin >> isMan;
+			cout << endl;
+
+			cout << "Is children?:\t";
+			cin >> isChildren;
+			cout << endl;
+
+			cout << "Is have glasses?:\t";
+			cin >> isHaveGlasses;
+			cout << endl;
+
+			cout << "is have beard?:\t";
+			cin >> isHaveBeard;
+			cout << endl;
+
+			double Xmin;
+			double Xmax;
+			double Ymin;
+			double Ymax;
+
+			cout << "Enter Xmin:\t";
+			cin >> Xmin;
+			cout << endl;
+
+			cout << "Enter Xmax:\t";
+			cin >> Xmax;
+			cout << endl;
+
+			cout << "Enter Ymin:\t";
+			cin >> Ymin;
+			cout << endl;
+
+			cout << "Enter Ymax:\t";
+			cin >> Ymax;
+			cout << endl;
+			Position pos(Xmin, Xmax, Ymin, Ymax);
+
+			lst.Add(new Cyclist(isMan, isChildren, isHaveGlasses, isHaveBeard, pos, bike_color));
+
+			break;
+		}
+
+		case 3:
+		{
+			const size_t SIZE = 255;
+			char* color = new char[SIZE];
+			cin.get();
+			cout << "Enter the color of the car:\t";
+			cin.getline(color, SIZE);
+
+
+			char* number = new char[SIZE];
+			cin.get(); 
+			cout << "Enter the number of car:\t";
+			cin.getline(number, SIZE);
+
+			bool isTaxi;
+			cout << "Is taxi?(0 - no, 1 - yes):\t";
+			cin >> isTaxi;
+
+			double Xmin;
+			double Xmax;
+			double Ymin;
+			double Ymax;
+
+			cout << "Enter Xmin:\t";
+			cin >> Xmin;
+			cout << endl;
+
+			cout << "Enter Xmax:\t";
+			cin >> Xmax;
+			cout << endl;
+
+			cout << "Enter Ymin:\t";
+			cin >> Ymin;
+			cout << endl;
+
+			cout << "Enter Ymax:\t";
+			cin >> Ymax;
+			cout << endl;
+			Position pos(Xmin, Xmax, Ymin, Ymax);
+
+			lst.Add(new Car(number, isTaxi, color, pos));
+			break;
+		}
+
+		case 4:
+		{
+			const size_t SIZE = 255;
+			char* time = new char[SIZE];
+			cin.get();
+			cout << "The time when it was first seen?:\t";
+			cin.getline(time, SIZE);
+
+			double Xmin;
+			double Xmax;
+			double Ymin;
+			double Ymax;
+
+			cout << "Enter Xmin:\t";
+			cin >> Xmin;
+			cout << endl;
+
+			cout << "Enter Xmax:\t";
+			cin >> Xmax;
+			cout << endl;
+
+			cout << "Enter Ymin:\t";
+			cin >> Ymin;
+			cout << endl;
+
+			cout << "Enter Ymax:\t";
+			cin >> Ymax;
+			cout << endl;
+			Position pos(Xmin, Xmax, Ymin, Ymax);
+
+			lst.Add(new Bag(time, pos));
+
+			break;
+		}
+
+		case 5:
+		{
+			cout << lst << endl;
+			break;
+		}
+
+		case 6:
+		{
+			return;
+		}
+
+		default:
+			break;
+		}
+	}
+}
+
+int main()
+{
+	ListTask list1;
+	Menu(list1);
+
+	ListTask list2 = list1;
+
+	cout << "---- CLEAR START ----" << endl;
+	list1.Clear();
+	cout << "---- CLEAR END ----" << endl;
+
+
+	cout << list2;
+
+	return 0;
+}
