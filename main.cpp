@@ -1,0 +1,92 @@
+#include <iostream>
+#include <string>
+#include <cstring>
+
+using namespace std;
+
+void Task(string text, string result)
+{
+	const int MAX = 100;
+	int* first_symbol = new int[MAX] {0};
+	int* consonant_count = new int[MAX] {0};
+	int* length_word = new int[MAX] {0};
+
+	string Delimiter = " .,:;!?-()";
+	string str = "aAeEyYuUiIoO";
+
+	unsigned int a = 0;
+	unsigned int b = 0;
+	int count = 0;
+
+	while (a < text.length())
+	{
+		 b = text.find_first_not_of(Delimiter, a);
+
+		 first_symbol[count] = b;
+
+		 a = text.find_first_of(Delimiter, b);
+		 length_word[count] = a;
+
+		 if (a > text.length() && !count)
+		 {
+			 result.assign(text, b, text.length() - b);
+			 cout << result;
+			 return;
+		 }
+
+		 int i = b;
+		 while(i < a && i < text.length())
+		 {
+			 if (str.find_first_of(text[i]) > str.length())
+			 {
+				 consonant_count[count]++;
+			 }
+			 i++;
+		 }
+		 count++;
+	}
+
+	int max = 0;
+
+	for (int i = 0; i < count; i++)
+	{
+		if (consonant_count[i] == max && length_word[i] < text.length())
+		{
+			result.append(text, first_symbol[i], length_word[i] - first_symbol[i]);
+			result += " ";
+		}
+		else if (consonant_count[i] == max)
+		{
+			result.append(text, first_symbol[i], text.length() - first_symbol[i]);
+			result += " ";
+		}
+		else if (consonant_count[i] > max && length_word[i] < text.length())
+		{
+			result.assign(text, first_symbol[i], length_word[i] - first_symbol[i]);
+			result += " ";
+			max = consonant_count[i];
+		}
+		else if (consonant_count[i] > max)
+		{
+			result.assign(text, first_symbol[i], text.length() - first_symbol[i]);
+			result += " ";
+			max = consonant_count[i];
+		}
+	}
+
+	cout << result;
+
+}
+
+int main()
+{
+	
+	string text;
+
+	cout << "Enter the string: ";
+	getline(cin, text);
+
+	string result;
+
+	Task(text, result);
+}
