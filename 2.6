@@ -19,7 +19,7 @@ class Num
 		return s;
 	}
 
-	friend istream& operator >> (istream& s, Num& c)// ïåðåãðóæåííûé îïåðàòîð ââîäà
+	friend istream& operator >> (istream& s, Num& c)// Ã¯Ã¥Ã°Ã¥Ã£Ã°Ã³Ã¦Ã¥Ã­Ã­Ã»Ã© Ã®Ã¯Ã¥Ã°Ã Ã²Ã®Ã° Ã¢Ã¢Ã®Ã¤Ã 
 	{
 		for (int i = 0; i < _digits; i++)
 		{
@@ -141,8 +141,8 @@ public:
 		return result;
 	}
 
-	void Shift(int n) // ñäâèã íà Í ðàçðÿäîâ 
-		// ðëîëë
+	void Shift(int n) // Ã±Ã¤Ã¢Ã¨Ã£ Ã­Ã  Ã Ã°Ã Ã§Ã°Ã¿Ã¤Ã®Ã¢ 
+		// Ã°Ã«Ã®Ã«Ã«
 	{
 		Num B;
 		for (int i = 0; i < _digits - 1; i++)
