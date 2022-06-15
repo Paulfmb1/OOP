@@ -1,0 +1,75 @@
+#include <iostream>
+#include <regex>
+#include <vector>
+#include <map>
+#include <fstream>
+#include <stack>
+#include <tuple>
+
+
+
+using namespace std;
+
+struct Element {
+
+    int line_start = 0;
+    int line_finish = 0;
+
+    Element() = default;
+};
+
+void Search(const string& line, int lineNumber, map<string, Element>& literals, int& counter, stack<int>& st, vector<pair<int,int>>& vec) {
+
+    smatch match0;
+    if (regex_search(line, match0, regex(".*?(\\{).*?"))) {
+        counter += 1;
+        st.push(lineNumber);
+    }
+
+    smatch match999;
+    if (regex_search(line, match999, regex(".*?(\\}).*?"))) {
+        counter -= 1;
+        vec.push_back(make_pair(st.top(), lineNumber));
+        //st.pop();
+    }
+
+    smatch match;
+    if (regex_search(line, match, regex("\\s+(if) ?\\("))) {
+       
+       
+        
+    }
+}
+
+//17 20 25 31
+
+
+
+
+int main() {
+
+    const string FILE_NAME = "./main.cpp";
+
+    map<string, Element> literals;
+    ifstream ifs(FILE_NAME);
+
+    stack<int> ss;
+
+    vector<pair<int, int>> vec;
+
+    int line_number = 1;
+    int counter = 0;
+    while (!ifs.eof()) {
+        string line;
+        getline(ifs, line);
+        Search(line, line_number++, literals, counter, ss, vec);
+    }
+
+    for (auto el : vec)
+    {
+        cout <<el.first << " " << el.second << endl;
+    }
+
+    return 0;
+
+}
