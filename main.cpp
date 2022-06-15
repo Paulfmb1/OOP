@@ -1,0 +1,37 @@
+#include <iostream>
+#include <string>
+#include <map>
+
+using namespace std;
+
+int main()
+{
+	string str;
+
+	cout << "Enter the text: ";
+	cin >> str;
+
+	for (int i = 0; i < str.length(); i++)
+	{
+		int temp_2 = i + 1;
+		int count = 1;
+		while (temp_2 < str.length())
+		{
+			temp_2 = str.find(str[i], temp_2);
+			count++;
+
+			if (temp_2 == -1)
+				break;
+
+			if (count > 2)
+				str.erase(temp_2, 1);
+			else
+				temp_2++;
+
+		}
+	}
+	
+	cout << str << endl;
+
+
+}
