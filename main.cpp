@@ -1,0 +1,17 @@
+#include <iostream>
+#include "List_2.h"
+
+using namespace std;
+
+int main()
+{
+    int n;
+    cout << "Enter amount of numbers (it will be doubled): ";
+    cin >> n;
+
+    DoubleLink<double> list;
+
+    Fill(list, n);
+    list.PrintList();
+    Task(list);
+}
