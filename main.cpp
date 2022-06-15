@@ -1,0 +1,41 @@
+#include <iostream>
+#include <list>
+
+using namespace std;
+
+list<char> Task(const list<char>& lst1, list<char> lst2)
+{
+	list<char> result;
+
+	for (auto i = lst1.begin(); i != lst1.end(); ++i)
+	{
+		for (auto j = lst2.begin(); j != lst2.end(); ++j)
+		{
+			if (*i == *j)
+			{
+				result.push_front(*i);
+				lst2.erase(j);
+				break;
+			}
+		}
+	}
+
+	return result;
+
+}
+
+int main()
+{
+	list<char> lst1{ 'a', 'b', 'c', 'd', 'e', 'f' };
+	list<char> lst2{ 'd', 'e' };
+
+	list<char> result = Task(lst1, lst2);
+
+	for(const auto& el: result){
+		cout << el << " ";
+	}
+
+	cout << endl;
+
+	return 0;
+}
